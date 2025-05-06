@@ -1,0 +1,216 @@
+import React, { useState, useContext, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { ResponsiveContainer, LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
+import { AuthContext } from './AuthContext';
+import axios from 'axios';
+
+
+const Dashboard = () => {
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+    const { username, userRole } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const [policyDropdownOpen, setPolicyDropdownOpen] = useState(false); // Add Policy dropdown state
+    const [utilityDropdownOpen, setUtilityDropdownOpen] = useState(false); // Add Utility dropdown state
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+    const fetchPolicyCounts = async () => {
+      try {
+        const headers = {
+          'Username': username,
+          'UserRole': userRole,
+          //'Authorization': `Bearer your-auth-token`,  // TODO in Future..
+        };
+        const response = await axios.get('http://localhost:5000/api/policy/monthly_counts', { headers });
+        setData(response.data);
+      } catch (error) {
+        console.error('Error fetching policy monthly counts', error);
+      }
+    };
+
+    fetchPolicyCounts();
+    }, [username, userRole]);
+
+    const handleDropdownToggle = () => {
+        setDropdownOpen(!dropdownOpen);
+    };
+
+    const handlePolicyDropdownToggle = () => {
+        setPolicyDropdownOpen(!policyDropdownOpen);
+    };
+
+    const handleUtilityDropdownToggle = () => {
+        setUtilityDropdownOpen(!utilityDropdownOpen);
+    };
+
+    const handleNavigate = (path) => {
+        console.log('userRole changed:', userRole);
+        setDropdownOpen(false);
+        setPolicyDropdownOpen(false);
+        setUtilityDropdownOpen(false);
+        navigate(path);
+    };
+
+    return (
+        <div className="min-h-screen flex flex-col">
+            {/* Navigation Bar */}
+            <nav className="bg-gray-800 p-4 text-white">
+                <div className="container mx-auto flex justify-between">
+                    <div>
+                        <h1 className="text-2xl font-bold">Dashboard</h1>
+                        <p className="text-sm">Welcome to your central dashboard</p>
+                    </div>
+                    <div className="flex space-x-4">
+                        {/* Conditionally render the "Central" menu */}
+                        {userRole === 'Admin' && (
+                            <div className="relative group">
+                                <button
+                                    onClick={handleDropdownToggle}
+                                    className="hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">
+                                    Central
+                                </button>
+                                {dropdownOpen && (
+                                    <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 text-gray-700 z-10">
+                                        <button
+                                            onClick={() => handleNavigate('/central/companycode')}
+                                            className="block px-4 py-2 text-sm hover:bg-gray-200 w-full text-left">
+                                            Company Code
+                                        </button>
+                                        <button
+                                            onClick={() => handleNavigate('/central/bookingcode')}
+                                            className="block px-4 py-2 text-sm hover:bg-gray-200 w-full text-left">
+                                            Booking Code
+                                        </button>
+                                        <button
+                                            onClick={() => handleNavigate('/central/policytypes')}
+                                            className="block px-4 py-2 text-sm hover:bg-gray-200 w-full text-left">
+                                            Policy Types
+                                        </button>
+                                        <button
+                                            onClick={() => handleNavigate('/central/producttypes')}
+                                            className="block px-4 py-2 text-sm hover:bg-gray-200 w-full text-left">
+                                            Product Types
+                                        </button>
+                                        <button
+                                            onClick={() => handleNavigate('/central/vehicletypes')}
+                                            className="block px-4 py-2 text-sm hover:bg-gray-200 w-full text-left">
+                                            Vehicle Types
+                                        </button>
+                                        <button
+                                            onClick={() => handleNavigate('/central/rtomapping')}
+                                            className="block px-4 py-2 text-sm hover:bg-gray-200 w-full text-left">
+                                            RTO Mapping
+                                        </button>
+                                    </div>
+                                )}
+                            </div>
+                        )}
+                        <div className="relative group">
+                            <button
+                                onClick={handlePolicyDropdownToggle}
+                                className="hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">
+                                Policy
+                            </button>
+                            {policyDropdownOpen && (
+                                <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 text-gray-700 z-10">
+                                    <button
+                                        onClick={() => handleNavigate('/policy/add')}
+                                        className="block px-4 py-2 text-sm hover:bg-gray-200 w-full text-left">
+                                        Add Policy
+                                    </button>
+                    {userRole === 'Admin' && (
+                        <>
+                            <button 
+                                onClick={() => handleNavigate('/policy/check')}
+                                className="block px-4 py-2 text-sm hover:bg-gray-200 w-full text-left">
+                                Check Policy
+                            </button>
+                            <button
+                                onClick={() => handleNavigate('/policy/map')}
+                                className="block px-4 py-2 text-sm hover:bg-gray-200 w-full text-left">
+                                Map Policy
+                            </button>
+                        </>
+                    )}
+                                    <button
+                                        onClick={() => handleNavigate('/policy/list')}
+                                        className="block px-4 py-2 text-sm hover:bg-gray-200 w-full text-left">
+                                        List Policy
+                                    </button>
+                                </div>
+                            )}
+                        </div>
+                 
+                 <div>
+                  <div className="relative group">
+                  <button
+                      onClick={handleUtilityDropdownToggle}
+                      className="hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">
+                      Utility
+                  </button>
+                  {utilityDropdownOpen && (
+                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 text-gray-700 z-10">
+                  <button
+                      onClick={() => handleNavigate('/utility/generate-report')}
+                      className="block px-4 py-2 text-sm hover:bg-gray-200 w-full text-left">
+                      Generate Report
+                  </button>
+                 </div>
+                 )}
+                 </div>
+                </div>
+                        <button onClick={() => navigate('/commission')} className="hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">
+                            Commission
+                        </button>
+                        <button onClick={() => navigate('/motorquotes')} className="hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">
+                            Motor Quotes
+                        </button>
+                        <button onClick={() => navigate('/')} className="hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">
+                            Signout
+                        </button>
+                    </div>
+                </div>
+            </nav>
+
+            {/* Main Content */}
+            <div className="container mx-auto flex-grow py-10 grid grid-cols-2 gap-6">
+                <div className="bg-white p-6 rounded-lg shadow-lg">
+                    <h2 className="text-xl font-bold mb-4">Policy Counts</h2>
+                    <div className="h-48 bg-gray-200 rounded-md p-4">
+                        <ResponsiveContainer width="100%" height="100%">
+                            <LineChart data={data}>
+                                <Line type="monotone" dataKey="policies" stroke="#8884d8" />
+                                <CartesianGrid stroke="#ccc" />
+                                <XAxis dataKey="name" />
+                                <YAxis />
+                            </LineChart>
+                        </ResponsiveContainer>
+                    </div>
+                </div>
+                <div className="bg-white p-6 rounded-lg shadow-lg">
+                    <h2 className="text-xl font-bold mb-4">Pending Policies</h2>
+                    <div className="h-48 bg-gray-200 rounded-md">
+                        {/* Pending Policies data will go here */}
+                        <p className="text-center pt-16">Pending Policies Placeholder</p>
+                    </div>
+                </div>
+                <div className="bg-white p-6 rounded-lg shadow-lg">
+                    <h2 className="text-xl font-bold mb-4">Total Revenue</h2>
+                    <div className="h-48 bg-gray-200 rounded-md">
+                        {/* Revenue data will go here */}
+                        <p className="text-center pt-16">Revenue Placeholder</p>
+                    </div>
+                </div>
+                <div className="bg-white p-6 rounded-lg shadow-lg">
+                    <h2 className="text-xl font-bold mb-4">Future Section</h2>
+                    <div className="h-48 bg-gray-200 rounded-md">
+                        {/* Future data or widgets will go here */}
+                        <p className="text-center pt-16">Future Section Placeholder</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default Dashboard;
