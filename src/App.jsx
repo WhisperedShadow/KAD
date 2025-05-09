@@ -4,7 +4,7 @@ import { AuthProvider } from './pages/AuthContext';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import Dashboard from './pages/Dashboard'; 
-import Navbar from './components/Navbar';
+import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer';
 import CompanyCode from './pages/CompanyCode'; 
 import BookingCode from './pages/BookingCode';
