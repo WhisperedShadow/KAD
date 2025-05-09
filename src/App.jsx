@@ -20,7 +20,6 @@ function App() {
     return (
         <Router>
             <div className="flex flex-col min-h-screen">
-                <Navbar />
                 <main className="flex-grow">
                     <Routes>
                         <Route path="/" element={<Login />} />
@@ -38,7 +37,6 @@ function App() {
                         <Route path="/utility/generate-report" element={<GenerateReport />} />
                     </Routes>
                 </main>
-                <Footer />
             </div>
         </Router>
     );

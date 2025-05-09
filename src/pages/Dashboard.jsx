@@ -3,7 +3,16 @@ import { useNavigate } from 'react-router-dom';
 import { ResponsiveContainer, LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
 import { AuthContext } from './AuthContext';
 import axios from 'axios';
+import styles from "./Dashboard.module.css";
+
 const backendUrl = process.env.REACT_APP_BACKEND_URL;
+
+let name = "User"; 
+let estpremium = "230,975.42" ;
+let perstatusamt = "235" ;
+let policycount = "4368" ;
+let perstatuscnt = "530";
+
 
 
 const Dashboard = () => {
@@ -53,164 +62,69 @@ const Dashboard = () => {
     };
 
     return (
-        <div className="min-h-screen flex flex-col">
-            {/* Navigation Bar */}
-            <nav className="bg-gray-800 p-4 text-white">
-                <div className="container mx-auto flex justify-between">
-                    <div>
-                        <h1 className="text-2xl font-bold">Dashboard</h1>
-                        <p className="text-sm">Welcome to your central dashboard</p>
-                    </div>
-                    <div className="flex space-x-4">
-                        {/* Conditionally render the "Central" menu */}
-                        {userRole === 'Admin' && (
-                            <div className="relative group">
-                                <button
-                                    onClick={handleDropdownToggle}
-                                    className="hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">
-                                    Central
-                                </button>
-                                {dropdownOpen && (
-                                    <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 text-gray-700 z-10">
-                                        <button
-                                            onClick={() => handleNavigate('/central/companycode')}
-                                            className="block px-4 py-2 text-sm hover:bg-gray-200 w-full text-left">
-                                            Company Code
-                                        </button>
-                                        <button
-                                            onClick={() => handleNavigate('/central/bookingcode')}
-                                            className="block px-4 py-2 text-sm hover:bg-gray-200 w-full text-left">
-                                            Booking Code
-                                        </button>
-                                        <button
-                                            onClick={() => handleNavigate('/central/policytypes')}
-                                            className="block px-4 py-2 text-sm hover:bg-gray-200 w-full text-left">
-                                            Policy Types
-                                        </button>
-                                        <button
-                                            onClick={() => handleNavigate('/central/producttypes')}
-                                            className="block px-4 py-2 text-sm hover:bg-gray-200 w-full text-left">
-                                            Product Types
-                                        </button>
-                                        <button
-                                            onClick={() => handleNavigate('/central/vehicletypes')}
-                                            className="block px-4 py-2 text-sm hover:bg-gray-200 w-full text-left">
-                                            Vehicle Types
-                                        </button>
-                                        <button
-                                            onClick={() => handleNavigate('/central/rtomapping')}
-                                            className="block px-4 py-2 text-sm hover:bg-gray-200 w-full text-left">
-                                            RTO Mapping
-                                        </button>
-                                    </div>
-                                )}
-                            </div>
-                        )}
-                        <div className="relative group">
-                            <button
-                                onClick={handlePolicyDropdownToggle}
-                                className="hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">
-                                Policy
-                            </button>
-                            {policyDropdownOpen && (
-                                <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 text-gray-700 z-10">
-                                    <button
-                                        onClick={() => handleNavigate('/policy/add')}
-                                        className="block px-4 py-2 text-sm hover:bg-gray-200 w-full text-left">
-                                        Add Policy
-                                    </button>
-                    {userRole === 'Admin' && (
-                        <>
-                            <button 
-                                onClick={() => handleNavigate('/policy/check')}
-                                className="block px-4 py-2 text-sm hover:bg-gray-200 w-full text-left">
-                                Check Policy
-                            </button>
-                            <button
-                                onClick={() => handleNavigate('/policy/map')}
-                                className="block px-4 py-2 text-sm hover:bg-gray-200 w-full text-left">
-                                Map Policy
-                            </button>
-                        </>
-                    )}
-                                    <button
-                                        onClick={() => handleNavigate('/policy/list')}
-                                        className="block px-4 py-2 text-sm hover:bg-gray-200 w-full text-left">
-                                        List Policy
-                                    </button>
-                                </div>
-                            )}
-                        </div>
-                 
-                 <div>
-                  <div className="relative group">
-                  <button
-                      onClick={handleUtilityDropdownToggle}
-                      className="hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">
-                      Utility
-                  </button>
-                  {utilityDropdownOpen && (
-                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 text-gray-700 z-10">
-                  <button
-                      onClick={() => handleNavigate('/utility/generate-report')}
-                      className="block px-4 py-2 text-sm hover:bg-gray-200 w-full text-left">
-                      Generate Report
-                  </button>
-                 </div>
-                 )}
-                 </div>
-                </div>
-                        <button onClick={() => navigate('/commission')} className="hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">
-                            Commission
-                        </button>
-                        <button onClick={() => navigate('/motorquotes')} className="hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">
-                            Motor Quotes
-                        </button>
-                        <button onClick={() => navigate('/')} className="hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">
-                            Signout
-                        </button>
-                    </div>
-                </div>
-            </nav>
+       <div className={styles.container}>
+          <div className={styles.dashboard}>
+              <div className={styles.topsection}>
+              <div className={styles.greetingheader}>
+                <h1 className={styles.lineone}>Welcome {name}!!</h1>
+                <p className={styles.linetwo}>Policy Dashboard</p>
+              </div>
+              </div>
 
-            {/* Main Content */}
-            <div className="container mx-auto flex-grow py-10 grid grid-cols-2 gap-6">
-                <div className="bg-white p-6 rounded-lg shadow-lg">
-                    <h2 className="text-xl font-bold mb-4">Policy Counts</h2>
-                    <div className="h-48 bg-gray-200 rounded-md p-4">
-                        <ResponsiveContainer width="100%" height="100%">
-                            <LineChart data={data}>
-                                <Line type="monotone" dataKey="policies" stroke="#8884d8" />
-                                <CartesianGrid stroke="#ccc" />
-                                <XAxis dataKey="name" />
-                                <YAxis />
-                            </LineChart>
-                        </ResponsiveContainer>
-                    </div>
+             <div className={styles.cardcontainer}>
+             <div className={styles.premiumcard}>
+                <p className={styles.cardtitle}>Total Premium</p>
+                <h1 className={styles.estpremium}>₹ {estpremium}</h1>
+                <p className={styles.eststatus}><span className={styles.perstatus}> +{perstatusamt}%</span> Per year</p>
+
+             </div>
+
+             <div className={styles.policycard}>
+             <p className={styles.cardtitle}>Policy counts</p>
+                <h1 className={styles.policycount}>{policycount}</h1>
+                <p className={styles.eststatus}><span className={styles.perstatus}>+ {perstatuscnt}%</span> Per year</p>
+             </div>
+             </div>
+
+             <div className={styles.barcontainer1}>
+              <div className={styles.topsecinbc1}>
+             <p className={styles.cardtitle}>Policy Pending</p>
+             <select className={styles.formselect}  name="year">
+              <option>Year</option>
+              <option value="01">2020</option>
+              <option value="02">2021</option>
+              <option value="03">2022</option>
+              <option value="04">2023</option>
+              <option value="05">2024</option>
+            </select>
                 </div>
-                <div className="bg-white p-6 rounded-lg shadow-lg">
-                    <h2 className="text-xl font-bold mb-4">Pending Policies</h2>
-                    <div className="h-48 bg-gray-200 rounded-md">
-                        {/* Pending Policies data will go here */}
-                        <p className="text-center pt-16">Pending Policies Placeholder</p>
-                    </div>
-                </div>
-                <div className="bg-white p-6 rounded-lg shadow-lg">
-                    <h2 className="text-xl font-bold mb-4">Total Revenue</h2>
-                    <div className="h-48 bg-gray-200 rounded-md">
-                        {/* Revenue data will go here */}
-                        <p className="text-center pt-16">Revenue Placeholder</p>
-                    </div>
-                </div>
-                <div className="bg-white p-6 rounded-lg shadow-lg">
-                    <h2 className="text-xl font-bold mb-4">Future Section</h2>
-                    <div className="h-48 bg-gray-200 rounded-md">
-                        {/* Future data or widgets will go here */}
-                        <p className="text-center pt-16">Future Section Placeholder</p>
-                    </div>
-                </div>
+
+             </div>
+
+
+
+
+             <div className={styles.barcontainer2}>
+              <div className={styles.topsecinbc2}> 
+             <p className={styles.cardtitle}>Feature section</p>
+             <select className={styles.formselect}  name="year">
+              
+              <option>Year</option>
+              <option value="01">2020</option>
+              <option value="02">2021</option>
+              <option value="03">2022</option>
+              <option value="04">2023</option>
+              <option value="05">2024</option>
+            </select>
+            
+            </div>
+
+             </div>
+
+             
             </div>
         </div>
+    
     );
 };
 
