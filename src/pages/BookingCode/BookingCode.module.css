@@ -1,0 +1,97 @@
+.Container{
+    width: 100%;
+    max-width: 1200px;
+    margin : 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+    background-color: #edf0f2;
+
+}
+.title{
+    color: white;
+    background-color: #1e4051;
+    padding: 10px 15px;
+    font-size: 24px;
+    margin: 0;
+    
+}
+.searchBar{
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 20px;
+    padding: 8px 16px;
+    width: 240px;
+}
+.searchInput{
+    border: none;
+    outline: none;
+    width: 100%;
+    padding-left: 8px;
+    font-size: 14px;
+}
+.ContentHeader{
+    background-color: #1e4051;
+    border-radius: 10px 10px 0 0;
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.createBtn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background-color: #1e4051;
+    color: white;
+    border: 1px solid white;
+    border-radius: 6px;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-left: auto;
+    margin-bottom: 10px;
+    margin-top: 5px;
+
+}
+.tableCnt{
+    background-color: white;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    border-radius: 20px;
+
+}
+.Act
+{
+    width: 15%;
+    text-align: center;
+} 
+.BkTable{
+    background-color: #1e4051;
+    color: white;
+    padding: 16px;
+    text-align: left;
+    font-weight: 500;
+    border-radius: 0 ;
+}
+.BkTable thead tr th:first-child {
+    border-top-left-radius: 20px;
+}
+
+.BkTable thead tr th:last-child {
+    border-top-right-radius: 20px;
+}
+.BkTable td{
+    padding: 16px;
+    border-bottom: 1px solid #f0f0f2;
+    font-size: 14px;
+    color: #333;
+}
+.BkTable tr:last-child td{
+    border-bottom: none;
+}
+.BkCode{
+    
+}

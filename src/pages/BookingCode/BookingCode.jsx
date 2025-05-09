@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Trash2,Pencil} from 'lucide-react';
+import styles from './BookingCode.module.css';
 const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
 const BookingCode = () => {
@@ -64,63 +66,72 @@ const BookingCode = () => {
     );
 
     return (
-        <div className="container mx-auto p-4">
-            <h2 className="text-2xl font-bold mb-4">Booking Codes</h2>
-            <div className="mb-4 flex justify-between items-center">
-                <button
-                    onClick={() => setIsModalOpen(true)}
-                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                >
-                    Create
-                </button>
-                <input
+        <div className={styles.Container}>
+        <div className={styles.ContentHeader}>
+            <h2 className={styles.title}>Booking Codes</h2>
+            <div className={styles.searchBar}>
+               <input
                     type="text"
                     placeholder="Search..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="border p-2 rounded"
+                   
                 />
-            </div>
-            <table className="min-w-full bg-white border border-gray-300">
+          </div>
+        </div>
+                <button  className={styles.createBtn}
+                    onClick={() => setIsModalOpen(true)}
+                   
+                >
+                     + Create
+                </button>
+               
+           <div className={styles.tableCnt}>
+            <table className={styles.BkTable}>
                 <thead>
                     <tr>
-                        <th className="border p-2">Booking Code</th>
-                        <th className="border p-2">Sub-Booking Codes</th>
-                        <th className="border p-2">Actions</th>
+                       <th className={styles.Act}>Actions</th>
+                        <th className={styles.BkCode}>Booking Code</th>
+                        <th className={styles.SubBk}>Sub-Booking Codes</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
                     {filteredBookingCodes.map((code) => (
                         <tr key={code._id}>
-                            <td className="border p-2">{code.bookingCode}</td>
-                            <td className="border p-2">
+
+                             <td >
+                                <button
+                                    onClick={() => handleDelete(code._id)} 
+                                    className={styles.deleteAll}
+                                    
+                                >
+                                     <Trash2 className={styles.deleteIconAll} />
+                                </button>
+                            </td>
+                            <td className={styles.BkCode}>{code.bookingCode}</td>
+                            <td >
                                 <ul>
                                     {code.subBookingCodes.map((sub) => (
                                         <li key={sub.subBookingCode}>
                                             {sub.subBookingCode} - {sub.remarks}
                                             <button
                                                 onClick={() => handleDeleteSubCode(code._id, sub.subBookingCode)}
-                                                className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded ml-2"
+                                                className={styles.deleteSub}
                                             >
-                                                Delete Sub
+                                               
+                                                    <Trash2 className={styles.SubdeleteIcon} />
                                             </button>
                                         </li>
                                     ))}
-                                </ul>
+                                </ul> 
                             </td>
-                            <td className="border p-2">
-                                <button
-                                    onClick={() => handleDelete(code._id)}
-                                    className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded"
-                                >
-                                    Delete
-                                </button>
-                            </td>
+                    
                         </tr>
                     ))}
                 </tbody>
             </table>
-
+            </div>
             {isModalOpen && (
                 <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center">
                     <div className="relative p-5 bg-white w-1/2 rounded-md">
@@ -163,6 +174,7 @@ const BookingCode = () => {
                 </div>
             )}
         </div>
+       
     );
 };
 
