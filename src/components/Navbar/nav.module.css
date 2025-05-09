@@ -3,7 +3,7 @@
   flex-direction: column;
   width: 60px;
   position: fixed;
-  height: 100vh;
+  height: 97%;
   top: 0;
   left: 50px;
   z-index: 1000;
@@ -19,7 +19,7 @@
 .navlink {
   flex-grow: 1;
   background-color: #204959;
-  border-radius: 10px 10px 0 0;
+  border-radius: 10px ;
 }
 
 .navlink_item {
@@ -33,8 +33,18 @@
 .navlink_item_icon {
   color: #fff;
   transition: background 0.3s;
-  padding: 10px;
+  padding: 20px;
   cursor: pointer;
+  text-align: center;
+}
+
+.navlink_item_icon i{
+  font-size: 1.5rem;
+}
+
+.navlink_item_icon p{
+  padding-top: 5px;
+  font-size: 10px;
 }
 
 .navlink_item:hover .navlink_item_text {
@@ -72,12 +82,10 @@
   border-radius: 50%;
   display: flex;
   position: fixed;
-  top: 50px;
+  top: 10px;
   right: 50px;
   align-items: center;
   justify-content: center;
-  border: solid #204959;
-  background-color: #fff;
   width: 50px;
   height: 50px;
 }
@@ -91,7 +99,7 @@
   width: 100px;
   height: 150px;
   position: fixed;
-  top: 100px;
+  top: 60px;
   right: 50px;
   display: none;
   align-items: center;

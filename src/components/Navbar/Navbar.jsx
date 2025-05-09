@@ -19,13 +19,8 @@ const adminUrl = [
 
 const urlsAndIcons = [
   {
-    url: "dashboard",
-    icon: "fa-solid fa-table-columns fa-2x",
-    links: [{ name: "Dashboard", url: "/dashboard" }],
-  },
-  {
     url: "policy",
-    icon: "fa-solid fa-file fa-2x",
+    icon: "fa-solid fa-newspaper fa-2x",
     links: [
       { name: "Add policy", url: "/policy/add" },
       { name: "Check policy", url: "/policy/check" },
@@ -39,7 +34,7 @@ const urlsAndIcons = [
     links: [{ name: "Generate Report", url: "/utility/generate-report" }],
   },
   {
-    url: "commission",
+    url: "payout",
     icon: "fa-solid fa-money-check-dollar fa-2x",
     links: [{ name: "Commission", url: "/commission" }],
   },
@@ -62,7 +57,7 @@ const Navbar = () => {
     const match =
       urlsAndIcons.find((item) => item.url === path) ||
       adminUrl.find((item) => item.url === path);
-    setActiveIcon(match || { icon: "fa-solid fa-circle-question", links: [] });
+    setActiveIcon(match || { icon: "fa-solid fa-table-columns fa-2x", links: [] });
   }, [location.pathname]);
 
   return (
@@ -73,11 +68,24 @@ const Navbar = () => {
         </div>
         <div className={styles.navlink}>
           {/* Admin-only links */}
-          {localStorage.getItem("userRole") === "Admin" &&
+          
+
+            <div className={styles.navlink_item}>
+              <a href="/dashboard">
+              <div className={styles.navlink_item_icon}>
+                <i className="fa-solid fa-table-columns fa-2x"></i>
+                <p>Dashboard</p>
+              </div>
+              </a>
+              
+            </div>
+
+            {localStorage.getItem("userRole") === "Admin" &&
             adminUrl.map((item, index) => (
               <div className={styles.navlink_item} key={`admin-${index}`}>
                 <div className={styles.navlink_item_icon}>
                   <i className={item.icon}></i>
+                  <p>{item.url.toLocaleUpperCase()}</p>
                 </div>
                 <div className={styles.navlink_item_text}>
                   {item.links.map((link, i) => (
@@ -94,6 +102,7 @@ const Navbar = () => {
             <div className={styles.navlink_item} key={`nav-${index}`}>
               <div className={styles.navlink_item_icon}>
                 <i className={item.icon}></i>
+                <p>{item.url==="motorquotes" ? "MOTOR QUOTES" : item.url.toUpperCase()}</p>
               </div>
               <div className={styles.navlink_item_text}>
                 {item.links.map((link, i) => (
@@ -115,7 +124,7 @@ const Navbar = () => {
         }}
       >
         <div className={styles.profile_icon}>
-          <i class="fa-solid fa-user-tie fa-2x"></i>
+          <i class="fa-solid fa-circle-user fa-2x"></i>
         </div>
         <div className={styles.profile_popup}>
           <p>{localStorage.getItem("username")}</p>
