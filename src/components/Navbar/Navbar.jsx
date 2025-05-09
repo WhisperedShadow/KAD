@@ -46,7 +46,7 @@ const urlsAndIcons = [
   {
     url: "motorquotes",
     icon: "fa-solid fa-motorcycle fa-2x",
-    links: [{ name: "Commission", url: "/commission" }],
+    links: [{ name: "Motor Quotes", url: "/motorquotes" }],
   },
 ];
 
