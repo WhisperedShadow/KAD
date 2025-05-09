@@ -1,11 +1,17 @@
 .Container{
-    width: 100%;
+    width: calc(100% - 280px);
     max-width: 1200px;
-    margin : 0 auto;
+    margin : 0 0 0 110px;
     padding: 20px;
     min-height: 100vh;
     background-color: #edf0f2;
+    margin-top: 100px;
+   
 
+}
+
+.body{
+    background-color: #edf0f2;
 }
 .title{
     color: white;
@@ -69,6 +75,11 @@
     text-align: center;
 } 
 .BkTable{
+   width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 ;
+}
+.BkTable th{
     background-color: #1e4051;
     color: white;
     padding: 16px;
@@ -91,7 +102,4 @@
 }
 .BkTable tr:last-child td{
     border-bottom: none;
-}
-.BkCode{
-    
 }

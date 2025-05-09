@@ -1,8 +1,5 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 /* Custom Global Styles can go here */
 body {
-    @apply bg-gray-100 text-gray-900;
+   background-color: #edf0f2;
 }
