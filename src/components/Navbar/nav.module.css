@@ -5,7 +5,7 @@
   position: fixed;
   height: 97%;
   top: 0;
-  left: 50px;
+  left: 0px;
   z-index: 1000;
   padding-top: 10px;
 }
@@ -82,8 +82,8 @@
   border-radius: 50%;
   display: flex;
   position: fixed;
-  top: 10px;
-  right: 50px;
+  top: 0px;
+  right: 10px;
   align-items: center;
   justify-content: center;
   width: 50px;
@@ -99,8 +99,8 @@
   width: 100px;
   height: 150px;
   position: fixed;
-  top: 60px;
-  right: 50px;
+  top: 50px;
+  right: 10px;
   display: none;
   align-items: center;
   border-radius: 10px;

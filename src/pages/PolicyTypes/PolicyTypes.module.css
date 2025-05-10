@@ -1,0 +1,414 @@
+.Container{
+    width: 100%;
+    max-width: 1200px;
+    margin : 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+    background-color: #edf0f2;
+
+}
+.title{
+    color: white;
+    background-color: #1e4051;
+    padding: 10px 15px;
+    font-size: 24px;
+    margin: 0;
+    
+}
+.searchBar{
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 20px;
+    padding: 8px 16px;
+    width: 240px;
+}
+.searchInput{
+    border: none;
+    outline: none;
+    width: 100%;
+    padding-left: 8px;
+    font-size: 14px;
+}
+.ContentHeader{
+    background-color: #1e4051;
+    border-radius: 10px 10px 0 0;
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.createBtn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background-color: #1e4051;
+    color: white;
+    border: 1px solid white;
+    border-radius: 6px;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-left: auto;
+    margin-bottom: 10px;
+    margin-top: 5px;
+
+}
+.tableCnt{
+    background-color: white;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    border-radius: 20px;
+
+}.Container{
+    width: 100%;
+    max-width: 1200px;
+    margin : 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+    background-color: #edf0f2;
+
+}
+.title{
+    color: white;
+    background-color: #1e4051;
+    padding: 10px 15px;
+    font-size: 24px;
+    margin: 0;
+    
+}
+.searchBar{
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 20px;
+    padding: 8px 16px;
+    width: 240px;
+}
+.searchInput{
+    border: none;
+    outline: none;
+    width: 100%;
+    padding-left: 8px;
+    font-size: 14px;
+}
+.ContentHeader{
+    background-color: #1e4051;
+    border-radius: 10px 10px 0 0;
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.createBtn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background-color: #1e4051;
+    color: white;
+    border: 1px solid white;
+    border-radius: 6px;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-left: auto;
+    margin-bottom: 10px;
+    margin-top: 5px;
+
+}
+.tableCnt{
+    background-color: white;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    border-radius: 20px;
+
+}
+.CpyTable{
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 ;
+    
+}
+.CpyTable th{
+    background-color: #1e4051;
+    color: white;
+    padding: 16px;
+    text-align: left;
+    font-weight: 500;
+    border-radius: 0 ;
+}
+.CpyTable thead tr th:first-child {
+    border-top-left-radius: 20px;
+}
+
+.CpyTable thead tr th:last-child {
+    border-top-right-radius: 20px;
+}
+.CpyTable td{
+    padding: 16px;
+    border-bottom: 1px solid #f0f0f2;
+    font-size: 14px;
+    color: #333;
+}
+.CpyTable tr:last-child td{
+    border-bottom: none;
+}
+.Act
+{
+    width: 15%;
+    text-align: center;
+} 
+.BtnContainer{
+    position: relative;
+    overflow: visible;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+}
+.mainButton{
+    position: absolute;
+    /* background-color: #1e293b; */
+    border: none;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 32px;
+    padding: 6px;
+    transition: all 500ms ease-in-out;
+    z-index: 10; /* Ensure this appears above table content */
+}
+.expanded {
+    width: 90px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+  }
+.dotsContainer{
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+    transition: all 500ms;
+    opacity: 1;
+    transform: scale(1);
+  } 
+.dotsContainer.hidden {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+.dot {
+    width: 8px;
+    height: 8px;
+    background-color: #204959;
+    border-radius: 50%;
+  }
+.actionsContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+    transition: all 500ms;
+    opacity: 0;
+    transform: scale(0.5);
+  }
+.actionsContainer.visible {
+    opacity: 1;
+    transform: scale(1);
+  }
+.actionButton {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 300ms ease-in-out;
+    overflow: hidden;
+  }
+.editButton {
+    background-color: #22c55e;
+  }
+.editButton.hovered {
+    background-color: #16a34a;
+    transform: scale(1.15);
+    box-shadow: 0 0 10px rgba(34, 197, 94, 0.6);
+  }
+.deleteButton {
+    background-color: #ef4444;
+  }
+.deleteButton.hovered {
+    background-color: #dc2626;
+    transform: scale(1.15);
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.6);
+  }
+.icon {
+    color: white;
+    transition: all 300ms;
+    opacity: 0;
+    transform: scale(0) rotate(-90deg);
+  }
+.iconVisible {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+.deleteButton .icon:not(.iconVisible) {
+    transform: scale(0) rotate(90deg);
+  }
+.clicked {
+    animation: pulse 600ms;
+  }
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.85); }
+    100% { transform: scale(1); }
+  }
+
+.modalOverlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+    overflow-y: auto;
+    }
+.modalContent{
+    background-color: white;
+    border-radius: 8px;
+    padding: 24px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    position: relative;
+}
+.modalTitle {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: #333;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #eaeaea;
+    }  
+.formGrp{
+    margin-bottom: 16px;
+    }
+.formLabel {
+   display: block;
+   margin-bottom: 6px;
+   font-weight: 500;
+   color: #555;
+    }
+.formInput {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    transition: border-color 0.2s;
+    }
+.formInput {
+   outline: none;
+   border-color: #4a90e2;
+   box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+   }
+.formTextarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    min-height: 100px;
+    resize: vertical;
+    transition: border-color 0.2s;
+    }
+.formTextarea {
+    outline: none;
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+    }
+.modalActions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 24px;
+    gap: 12px;
+    }
+.saveButton {
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    }
+
+.saveButton {
+    background-color: #3a7bc8;
+   }
+.cancelButton {
+    background-color: #f1f1f1;
+    color: #555;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+.cancelButton {
+   background-color: #e5e5e5;
+   color: #333;
+    }
+
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+    }
+@keyframes slideIn {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+    }
+.modalOverlay {
+   animation: fadeIn 0.3s ease-out;
+ }
+.modalContainer {
+   animation: slideIn 0.3s ease-out;  
+}
+.Act
+{
+    width: 15%;
+    text-align: center;
+} 
+.BkTable{
+    background-color: #1e4051;
+    color: white;
+    padding: 16px;
+    text-align: left;
+    font-weight: 500;
+    border-radius: 0 ;
+}
+.BkTable thead tr th:first-child {
+    border-top-left-radius: 20px;
+}
+
+.BkTable thead tr th:last-child {
+    border-top-right-radius: 20px;
+}
+.BkTable td{
+    padding: 16px;
+    border-bottom: 1px solid #f0f0f2;
+    font-size: 14px;
+    color: #333;
+}
+.BkTable tr:last-child td{
+    border-bottom: none;
+}
