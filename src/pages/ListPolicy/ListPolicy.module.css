@@ -1,0 +1,131 @@
+.Container{
+    width: 100%;
+    max-width: 1200px;
+    margin : 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+    background-color: #edf0f2;
+
+}
+.title{
+    color: white;
+    background-color: #1e4051;
+    padding: 10px 15px;
+    font-size: 24px;
+    margin: 0;
+    
+}
+.searchBar{
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 20px;
+    padding: 8px 16px;
+    width: 360px;
+}
+.searchBar button{
+    width: 100px;
+    gap: 10px;
+}
+.searchInput{
+    border: none;
+    outline: none;
+    width: 100%;
+    padding-left: 8px;
+    font-size: 14px;
+}
+.ContentHeader{
+    background-color: #1e4051;
+    border-radius: 10px 10px 0 0;
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.filter_container{
+    display: none;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    width: 500px;
+    right: 0;
+    z-index: 10000;
+    gap: 10px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 16px 20px;
+    position: absolute;
+    grid-template-columns: 1fr 1fr;
+}
+
+.filter_container label{
+    width: auto;
+    border: solid black;
+}
+
+.show_filter{
+    display: grid;
+}
+
+.MOP{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.MOP span{
+    display: flex;
+    padding: 0 15px;
+}
+
+.MOP span input[type="radio"]:checked{
+    accent-color:#1e4051;
+}
+
+.policy_card{
+    width: 100%;
+    background-color: white;
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+}
+
+.policy_card_head{
+    display: grid;
+    grid-template-columns: 3fr 3fr 3fr 1fr;
+    text-align: center;
+    padding: 10px 0;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
+}
+
+.policy_card_body{
+    display: none;
+}
+
+.policy_card_body_details{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 30px;
+}
+
+.policy_card_body_details p{
+    padding-left: 20px 10px 20px 100px;
+}
+
+.policy_card_body_pdf{
+    display: flex;
+    justify-content: center;
+    grid-template-columns: 1fr;
+    margin-bottom: 30px;
+}
+
+.policy_card_body_pdf a{
+    background-color: #1e4051;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.policy_show{
+    display: block;
+}

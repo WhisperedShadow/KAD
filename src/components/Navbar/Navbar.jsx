@@ -141,7 +141,7 @@ const Navbar = () => {
         }}
       >
         <div className={styles.profile_icon}>
-          <i class="fa-solid fa-circle-user fa-2x"></i>
+          <i className="fa-solid fa-circle-user fa-2x"></i>
         </div>
         <div className={styles.profile_popup}>
           <p>{localStorage.getItem("username")}</p>

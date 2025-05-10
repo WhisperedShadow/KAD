@@ -12,7 +12,7 @@ import PolicyTypes from './pages/PolicyTypes/PolicyTypes';
 import ProductTypes from './pages/ProductTypes/ProductTypes';
 import VehicleTypes from './pages/VehicleTypes/VehicleTypes'; 
 import AddPolicy from './pages/AddPolicy';
-import ListPolicy from './pages/ListPolicy';
+import ListPolicy from './pages/ListPolicy/ListPolicy';
 import CheckPolicy from './pages/CheckPolicy';
 import GenerateReport from './pages/GenerateReport';
 
