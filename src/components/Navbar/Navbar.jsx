@@ -19,6 +19,11 @@ const adminUrl = [
 
 const urlsAndIcons = [
   {
+    url: "dashboard",
+    icon: "fa-solid fa-table-columns fa-2x",
+    links: [{ name: "Dashboard", url: "/dashboard" }],
+  },
+  {
     url: "policy",
     icon: "fa-solid fa-newspaper fa-2x",
     links: [
@@ -57,7 +62,9 @@ const Navbar = () => {
     const match =
       urlsAndIcons.find((item) => item.url === path) ||
       adminUrl.find((item) => item.url === path);
-    setActiveIcon(match || { icon: "fa-solid fa-table-columns fa-2x", links: [] });
+    setActiveIcon(
+      match || { icon: "fa-solid fa-table-columns fa-2x", links: [] }
+    );
   }, [location.pathname]);
 
   return (
@@ -68,19 +75,8 @@ const Navbar = () => {
         </div>
         <div className={styles.navlink}>
           {/* Admin-only links */}
-          
 
-            <div className={styles.navlink_item}>
-              <a href="/dashboard">
-              <div className={styles.navlink_item_icon}>
-                <i className="fa-solid fa-table-columns fa-2x"></i>
-                <p>Dashboard</p>
-              </div>
-              </a>
-              
-            </div>
-
-            {localStorage.getItem("userRole") === "Admin" &&
+          {localStorage.getItem("userRole") === "Admin" &&
             adminUrl.map((item, index) => (
               <div className={styles.navlink_item} key={`admin-${index}`}>
                 <div className={styles.navlink_item_icon}>
@@ -98,21 +94,42 @@ const Navbar = () => {
             ))}
 
           {/* General links */}
-          {urlsAndIcons.map((item, index) => (
-            <div className={styles.navlink_item} key={`nav-${index}`}>
-              <div className={styles.navlink_item_icon}>
-                <i className={item.icon}></i>
-                <p>{item.url==="motorquotes" ? "MOTOR QUOTES" : item.url.toUpperCase()}</p>
-              </div>
-              <div className={styles.navlink_item_text}>
-                {item.links.map((link, i) => (
-                  <a href={link.url} key={i}>
-                    {link.name}
+          {urlsAndIcons.map((item, index) => {
+            if (item.links.length === 1) {
+              return (
+                <div className={styles.navlink_item} key={index}>
+                  <a href={item.links[0].url}>
+                    <div className={styles.navlink_item_icon}>
+                      <i className={item.icon}></i>
+                      <p>
+                        {item.url === "motorquotes"
+                          ? "MOTOR QUOTES"
+                          : item.url.toUpperCase()}
+                      </p>
+                    </div>
                   </a>
-                ))}
-              </div>
-            </div>
-          ))}
+                </div>
+              );
+            } else if (item.links.length === 0) {
+              return null;
+            } else {
+              return (
+                <div className={styles.navlink_item} key={`nav-${index}`}>
+                  <div className={styles.navlink_item_icon}>
+                    <i className={item.icon}></i>
+                    <p>{item.url}</p>
+                  </div>
+                  <div className={styles.navlink_item_text}>
+                    {item.links.map((link, i) => (
+                      <a href={link.url} key={i}>
+                        {link.name}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              );
+            }
+          })}
         </div>
       </nav>
       <div
